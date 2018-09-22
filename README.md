@@ -10,6 +10,8 @@ Original sample image:
 
 ![](sample/sample.jpg)
 
-Transformed sample image: ([as HTML file](https://raw.githubusercontent.com/kinoubenkyou/karizer/master/sample/sample-transformed))
+Transformed sample image:
 
 ![](../assets/images/sample-transformed.png)
+
+(view as [HTML](https://raw.githubusercontent.com/kinoubenkyou/karizer/master/sample/sample-transformed) file)
