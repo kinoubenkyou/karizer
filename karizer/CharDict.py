@@ -8,9 +8,10 @@ class CharDict:
     # its own rule of rendering. Therefore, the formula to calculate CharDict
     # can only be hard-coded for each set of font_name, font_size.
     FONT_FILE_NAME = 'cour.ttf'
-    FONT_SIZE = 14
-    SPACING = 5
-    RENDER_OFFSET = -1
+    FONT_SIZE = 28
+
+    CHAR_WIDTH = 16
+    CHAR_HEIGHT = 32
 
     # The order before joining of CHAR_STRING is also the priority order
     # for choosing character when generating the conversion table.
@@ -20,46 +21,36 @@ class CharDict:
                            string.digits,
                            string.ascii_uppercase])
 
-    @staticmethod
-    def get_char_size(font_file_name, font_size, spacing):
-        image = Image.new('L', size=(0, 0), color=255)
-        draw = ImageDraw.Draw(image)
-        font = ImageFont.truetype('fonts/' + font_file_name, font_size)
-        # dummy text is used here to get character size
-        return draw.multiline_textsize(' ', font, spacing)
-
-    def __init__(self, font_file_name=FONT_FILE_NAME, font_size=FONT_SIZE,
-                 spacing=SPACING):
+    def __init__(self, font_file_name=FONT_FILE_NAME, font_size=FONT_SIZE):
         values = {}
-        char_width, char_height = self.get_char_size(font_file_name)
 
         for char in self.CHAR_STRING:
-            image = Image.new('L', (char_width * 3, char_height * 3),
+            image = Image.new('L', (self.CHAR_WIDTH, self.CHAR_HEIGHT),
                               color=255)
             draw = ImageDraw.Draw(image)
             font = ImageFont.truetype('fonts/' + font_file_name, font_size)
-            text = '\n ' + char
             top_left_pos = (0, 0)
-            draw.multiline_text(top_left_pos, text, font)
-            half_n_pixel = char_width * char_height
+            draw.multiline_text(top_left_pos, text=char, font=font)
+            half_n_pixel = self.CHAR_WIDTH * self.CHAR_HEIGHT // 2
 
             upper, lower = 0, 0
-            for x in range(char_width, char_width * 2):
+            for x in range(self.CHAR_WIDTH):
                 # process 1 upper and 1 lower pixel for each iteration
-                for y in range(char_height + self.RENDER_OFFSET,
-                               char_height * 3 / 2 + self.RENDER_OFFSET):
+                for y in range(self.CHAR_HEIGHT // 2):
                     # process the upper pixel
                     upper_position = (x, y)
                     upper += image.getpixel(upper_position)
                     # process the lower pixel
-                    lower_position = (x, y + char_height / 2)
+                    lower_position = (x, y + self.CHAR_HEIGHT // 2)
                     lower += image.getpixel(lower_position)
 
-                upper = round(upper / half_n_pixel)
-                lower = round(lower / half_n_pixel)
+            upper = round(upper / half_n_pixel)
+            lower = round(lower / half_n_pixel)
 
             values[char] = (upper, lower)
             del image
+
+        self.values = values
 
     # for debugging
     def print_same_keys_of_same_values(self):
@@ -70,3 +61,10 @@ class CharDict:
                 rvalue = self.values[rkey]
                 if lvalue == rvalue:
                     print(lkey, rkey, self.values[lkey])
+
+    def write(self, file_path='cache/last-char-dict'):
+        with open(file_path, 'w') as file:
+            for char in self.values:
+                line_data = [char, str(self.values[char][0]),
+                             str(self.values[char][1]), '\n']
+                file.write(' '.join(line_data))
