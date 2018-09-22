@@ -38,7 +38,7 @@ class CharImage:
 
         return value
 
-    def __init__(self, image, conversion_table, char_image_width=300):
+    def __init__(self, image, conversion_table, char_image_width=270):
         preparing_result = self.prepare_image(image,
                                               char_image_width)
         prepared_image, char_image_width, char_image_height = preparing_result
