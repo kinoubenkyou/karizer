@@ -27,8 +27,7 @@ class ConversionTable:
         self.chars = chars
         self.write()
 
-    def write(self, file_path='output/temp-conversion-table'):
-
+    def write(self, file_path='cache/last-conversion-table'):
         with open(file_path, 'w') as file:
             for y in range(256):
                 line = ''.join(self.chars[y]) + '\n'
