@@ -4,24 +4,16 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 class CharDict:
-    """
-    Each font has its own rule of rendering. Each size also has
-    its own rule of rendering. Therefore, the formula to calculate CharDict
-    can only be hard-coded for each set of font_name, font_size, spacing
-    and rendered offset (vertical).
-
-    This class uses font 'Courier New', size 14, spacing 5 and offset -1
-    as the hard-coded params.
-
-    The order before joining of CHAR_STRING is also the priority order
-    for choosing character when generating the conversion table.
-    """
-
+    # Each font has its own rule of rendering. Each size also has
+    # its own rule of rendering. Therefore, the formula to calculate CharDict
+    # can only be hard-coded for each set of font_name, font_size.
     FONT_FILE_NAME = 'cour.ttf'
     FONT_SIZE = 14
     SPACING = 5
     RENDER_OFFSET = -1
 
+    # The order before joining of CHAR_STRING is also the priority order
+    # for choosing character when generating the conversion table.
     CHAR_STRING = ''.join([string.punctuation,
                            " ",
                            string.ascii_lowercase,
