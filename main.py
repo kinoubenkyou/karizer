@@ -23,7 +23,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         infile_path = sys.argv[1]
     else:
-        infile_path = 'sample.jpg'
+        infile_path = 'sample/sample.jpg'
     image = Image.open(infile_path)
 
     print("start generating char_image")
