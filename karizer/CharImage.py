@@ -61,7 +61,6 @@ class CharImage:
             chars.append(row)
 
         self.chars = chars
-        self.write()
 
     def write(self, file_path='cache/last-char-image'):
         with open(file_path, 'w') as file:

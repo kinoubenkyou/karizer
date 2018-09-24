@@ -28,4 +28,8 @@ if __name__ == '__main__':
 
     print("start generating char_image")
     char_image = CharImage(image, conversion_table)
-    char_image.write()
+
+    path_splited = infile_path.split("/")
+    path_splited[-1] = "karized-" + ".".join(path_splited[-1].split(".")[:-1])
+    outfile_path = "/".join(path_splited)
+    char_image.write(outfile_path)
