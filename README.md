@@ -30,4 +30,4 @@ Transformed sample image:
 
 ![](../assets/images/sample-transformed.png)
 
-(view as [HTML](https://raw.githubusercontent.com/kinoubenkyou/karizer/master/sample/sample-transformed) file)
+(view [file](https://raw.githubusercontent.com/kinoubenkyou/karizer/master/sample/sample-transformed) directly)
