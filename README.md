@@ -3,6 +3,22 @@ KARIZER
 
 Transforming raster images into character images
 
+Dependencies
+----------------
+
+* python3
+
+Usage
+--------
+
+1. Run `main.py` in the root directory of the project
+
+  ```shell
+  python3 main.py path/to/original/image.png
+  ```
+  
+2. Get result file at the same directory, as `karized-image.png`
+
 Features
 ------------
 
