@@ -11,13 +11,13 @@ Dependencies
 Usage
 --------
 
-1. Run `main.py` in the root directory of the project
+1. Run `main.py` in the root directory of the project. For example:
 
   ```shell
   python3 main.py path/to/original/image.png
   ```
   
-2. Get result file at the same directory, as `karized-image.png`
+2. Get result file at the same directory with `karized-` prepended. For example, `karized-image.png`
 
 Features
 ------------
