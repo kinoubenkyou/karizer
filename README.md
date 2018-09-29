@@ -7,6 +7,7 @@ Dependencies
 ----------------
 
 * python3
+* PIL
 
 Usage
 --------
